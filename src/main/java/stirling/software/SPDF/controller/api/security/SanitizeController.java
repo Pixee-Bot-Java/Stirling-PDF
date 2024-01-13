@@ -1,4 +1,5 @@
 package stirling.software.SPDF.controller.api.security;
+import io.github.pixee.security.Filenames;
 import java.io.IOException;
 
 import org.apache.pdfbox.cos.COSDictionary;
@@ -68,7 +69,7 @@ public class SanitizeController {
 	            sanitizeFonts(document);
 	        }
 
-	        return WebResponseUtils.pdfDocToWebResponse(document, inputFile.getOriginalFilename().replaceFirst("[.][^.]+$", "") + "_sanitized.pdf");
+	        return WebResponseUtils.pdfDocToWebResponse(document, Filenames.toSimpleFileName(inputFile.getOriginalFilename()).replaceFirst("[.][^.]+$", "") + "_sanitized.pdf");
 	    }
 	}
 	private void sanitizeJavaScript(PDDocument document) throws IOException {

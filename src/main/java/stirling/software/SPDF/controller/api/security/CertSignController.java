@@ -1,5 +1,6 @@
 package stirling.software.SPDF.controller.api.security;
 
+import io.github.pixee.security.Filenames;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -233,7 +234,7 @@ public class CertSignController {
 			try (ByteArrayOutputStream signedPdfOutput = new ByteArrayOutputStream()) {
 				document.save(signedPdfOutput);
 				return WebResponseUtils.boasToWebResponse(signedPdfOutput,
-						pdf.getOriginalFilename().replaceFirst("[.][^.]+$", "") + "_signed.pdf");
+						Filenames.toSimpleFileName(pdf.getOriginalFilename()).replaceFirst("[.][^.]+$", "") + "_signed.pdf");
 
 			} catch (Exception e) {
 				e.printStackTrace();

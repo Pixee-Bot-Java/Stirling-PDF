@@ -1,5 +1,6 @@
 package stirling.software.SPDF.controller.api;
 
+import io.github.pixee.security.Filenames;
 import java.io.IOException;
 
 import org.apache.pdfbox.pdmodel.PDDocument;
@@ -45,7 +46,7 @@ public class RotationController {
             page.setRotation(page.getRotation() + angle);
         }
 
-        return WebResponseUtils.pdfDocToWebResponse(document, pdfFile.getOriginalFilename().replaceFirst("[.][^.]+$", "") + "_rotated.pdf");
+        return WebResponseUtils.pdfDocToWebResponse(document, Filenames.toSimpleFileName(pdfFile.getOriginalFilename()).replaceFirst("[.][^.]+$", "") + "_rotated.pdf");
 
     }
 

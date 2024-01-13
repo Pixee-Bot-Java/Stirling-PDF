@@ -1,5 +1,6 @@
 package stirling.software.SPDF.controller.api.misc;
 
+import io.github.pixee.security.Filenames;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.List;
@@ -80,7 +81,7 @@ public class PageNumbersController {
             PDPage page = document.getPage(i);
             PDRectangle pageSize = page.getMediaBox();
 
-            String text = customText != null ? customText.replace("{n}", String.valueOf(pageNumber)).replace("{total}", String.valueOf(document.getNumberOfPages())).replace("{filename}", file.getOriginalFilename().replaceFirst("[.][^.]+$", "")) : String.valueOf(pageNumber);
+            String text = customText != null ? customText.replace("{n}", String.valueOf(pageNumber)).replace("{total}", String.valueOf(document.getNumberOfPages())).replace("{filename}", Filenames.toSimpleFileName(file.getOriginalFilename()).replaceFirst("[.][^.]+$", "")) : String.valueOf(pageNumber);
 
             float x, y;
 
@@ -126,7 +127,7 @@ public class PageNumbersController {
         document.save(baos);
         document.close();
 
-        return WebResponseUtils.bytesToWebResponse(baos.toByteArray(), file.getOriginalFilename().replaceFirst("[.][^.]+$", "") + "_numbersAdded.pdf", MediaType.APPLICATION_PDF);
+        return WebResponseUtils.bytesToWebResponse(baos.toByteArray(), Filenames.toSimpleFileName(file.getOriginalFilename()).replaceFirst("[.][^.]+$", "") + "_numbersAdded.pdf", MediaType.APPLICATION_PDF);
 
     }
 

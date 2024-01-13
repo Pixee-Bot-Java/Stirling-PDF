@@ -1,5 +1,6 @@
 package stirling.software.SPDF.controller.api.misc;
 
+import io.github.pixee.security.Filenames;
 import java.nio.charset.StandardCharsets;
 import java.util.Map;
 
@@ -42,7 +43,7 @@ public class ShowJavascript {
 	                    PDActionJavaScript jsAction = entry.getValue();
 	                    String jsCodeStr = jsAction.getAction();
 	
-	                    script += "// File: " + inputFile.getOriginalFilename() + ", Script: " + name + "\n" + jsCodeStr + "\n";
+	                    script += "// File: " + Filenames.toSimpleFileName(inputFile.getOriginalFilename()) + ", Script: " + name + "\n" + jsCodeStr + "\n";
 	                }
 	            }
         	}

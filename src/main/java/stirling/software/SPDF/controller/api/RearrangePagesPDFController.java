@@ -1,5 +1,6 @@
 package stirling.software.SPDF.controller.api;
 
+import io.github.pixee.security.Filenames;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -52,7 +53,7 @@ public class RearrangePagesPDFController {
 			document.removePage(pageIndex);
 		}
 		return WebResponseUtils.pdfDocToWebResponse(document,
-				pdfFile.getOriginalFilename().replaceFirst("[.][^.]+$", "") + "_removed_pages.pdf");
+				Filenames.toSimpleFileName(pdfFile.getOriginalFilename()).replaceFirst("[.][^.]+$", "") + "_removed_pages.pdf");
 
 	}
 
@@ -207,7 +208,7 @@ public class RearrangePagesPDFController {
 			}
 
 			return WebResponseUtils.pdfDocToWebResponse(document,
-					pdfFile.getOriginalFilename().replaceFirst("[.][^.]+$", "") + "_rearranged.pdf");
+					Filenames.toSimpleFileName(pdfFile.getOriginalFilename()).replaceFirst("[.][^.]+$", "") + "_rearranged.pdf");
 		} catch (IOException e) {
 			logger.error("Failed rearranging documents", e);
 			return null;

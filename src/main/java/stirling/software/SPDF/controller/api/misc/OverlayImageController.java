@@ -1,5 +1,6 @@
 package stirling.software.SPDF.controller.api.misc;
 
+import io.github.pixee.security.Filenames;
 import java.io.IOException;
 
 import org.slf4j.Logger;
@@ -41,7 +42,7 @@ public class OverlayImageController {
             byte[] imageBytes = imageFile.getBytes();
             byte[] result = PdfUtils.overlayImage(pdfBytes, imageBytes, x, y, everyPage);
 
-            return WebResponseUtils.bytesToWebResponse(result, pdfFile.getOriginalFilename().replaceFirst("[.][^.]+$", "") + "_overlayed.pdf");
+            return WebResponseUtils.bytesToWebResponse(result, Filenames.toSimpleFileName(pdfFile.getOriginalFilename()).replaceFirst("[.][^.]+$", "") + "_overlayed.pdf");
         } catch (IOException e) {
             logger.error("Failed to add image to PDF", e);
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);

@@ -1,5 +1,6 @@
 package stirling.software.SPDF.utils;
 
+import io.github.pixee.security.Filenames;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -30,7 +31,7 @@ public class PDFToFile {
         }
 
         // Get the original PDF file name without the extension
-        String originalPdfFileName = inputFile.getOriginalFilename();
+        String originalPdfFileName = Filenames.toSimpleFileName(inputFile.getOriginalFilename());
         String pdfBaseName = originalPdfFileName.substring(0, originalPdfFileName.lastIndexOf('.'));
 
         // Validate output format

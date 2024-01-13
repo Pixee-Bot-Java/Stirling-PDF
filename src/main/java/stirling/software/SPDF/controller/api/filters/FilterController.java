@@ -1,5 +1,6 @@
 package stirling.software.SPDF.controller.api.filters;
 
+import io.github.pixee.security.Filenames;
 import java.io.IOException;
 
 import org.apache.pdfbox.pdmodel.PDDocument;
@@ -37,7 +38,7 @@ public class FilterController {
 	    
 		PDDocument pdfDocument = PDDocument.load(inputFile.getInputStream());
 		if (PdfUtils.hasText(pdfDocument, pageNumber, text))
-			return WebResponseUtils.pdfDocToWebResponse(pdfDocument, inputFile.getOriginalFilename());
+			return WebResponseUtils.pdfDocToWebResponse(pdfDocument, Filenames.toSimpleFileName(inputFile.getOriginalFilename()));
 		return null;
 	}
 
@@ -51,7 +52,7 @@ public class FilterController {
 	    
 		PDDocument pdfDocument = PDDocument.load(inputFile.getInputStream());
 		if (PdfUtils.hasImages(pdfDocument, pageNumber))
-			return WebResponseUtils.pdfDocToWebResponse(pdfDocument, inputFile.getOriginalFilename());
+			return WebResponseUtils.pdfDocToWebResponse(pdfDocument, Filenames.toSimpleFileName(inputFile.getOriginalFilename()));
 		return null;
 	}
 

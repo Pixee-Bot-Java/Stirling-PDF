@@ -1,5 +1,6 @@
 package stirling.software.SPDF.controller.api.converters;
 
+import io.github.pixee.security.Filenames;
 import java.io.IOException;
 
 import org.apache.pdfbox.rendering.ImageType;
@@ -50,7 +51,7 @@ public class ConvertImgPDFController {
         // returns bytes for image
         boolean singleImage = singleOrMultiple.equals("single");
         byte[] result = null;
-        String filename = file.getOriginalFilename().replaceFirst("[.][^.]+$", "");
+        String filename = Filenames.toSimpleFileName(file.getOriginalFilename()).replaceFirst("[.][^.]+$", "");
         try {
             result = PdfUtils.convertFromPdf(pdfBytes, imageFormat.toUpperCase(), colorTypeResult, singleImage, Integer.valueOf(dpi), filename);
         } catch (IOException e) {

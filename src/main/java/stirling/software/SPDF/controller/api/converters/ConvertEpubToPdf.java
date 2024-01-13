@@ -1,5 +1,6 @@
 package stirling.software.SPDF.controller.api.converters;
 
+import io.github.pixee.security.Filenames;
 import io.github.pixee.security.ZipSecurity;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -51,7 +52,7 @@ public class ConvertEpubToPdf {
 	        throw new IllegalArgumentException("Please provide an EPUB file for conversion.");
 	    }
 
-	    String originalFilename = fileInput.getOriginalFilename();
+	    String originalFilename = Filenames.toSimpleFileName(fileInput.getOriginalFilename());
 	    if (originalFilename == null || !originalFilename.endsWith(".epub")) {
 	        throw new IllegalArgumentException("File must be in .epub format.");
 	    }
