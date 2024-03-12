@@ -44,7 +44,9 @@ public class MetricsController {
     public void init() {
     	Boolean metricsEnabled = applicationProperties.getMetrics().getEnabled();
     	if(metricsEnabled == null)
-    		metricsEnabled = true;
+    		{
+    		    metricsEnabled = true;
+    		}
         this.metricsEnabled = metricsEnabled;
     }
     
