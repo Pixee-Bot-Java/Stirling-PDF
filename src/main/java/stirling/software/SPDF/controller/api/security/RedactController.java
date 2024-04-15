@@ -1,5 +1,6 @@
 package stirling.software.SPDF.controller.api.security;
 
+import io.github.pixee.security.Filenames;
 import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
@@ -100,7 +101,7 @@ public class RedactController {
         
         byte[] pdfContent = baos.toByteArray();
         return WebResponseUtils.bytesToWebResponse(pdfContent,
-                file.getOriginalFilename().replaceFirst("[.][^.]+$", "") + "_redacted.pdf");
+                Filenames.toSimpleFileName(file.getOriginalFilename()).replaceFirst("[.][^.]+$", "") + "_redacted.pdf");
     }
 
     

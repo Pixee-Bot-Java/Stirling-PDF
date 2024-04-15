@@ -1,5 +1,6 @@
 package stirling.software.SPDF.controller.api.misc;
 
+import io.github.pixee.security.Filenames;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -61,7 +62,7 @@ public class RepairController {
         Files.delete(tempOutputFile);
 
         // Return the optimized PDF as a response
-        String outputFilename = inputFile.getOriginalFilename().replaceFirst("[.][^.]+$", "") + "_repaired.pdf";
+        String outputFilename = Filenames.toSimpleFileName(inputFile.getOriginalFilename()).replaceFirst("[.][^.]+$", "") + "_repaired.pdf";
         return WebResponseUtils.bytesToWebResponse(pdfBytes, outputFilename);
     }
 

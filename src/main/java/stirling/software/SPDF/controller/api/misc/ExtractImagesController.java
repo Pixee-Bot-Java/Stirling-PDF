@@ -1,4 +1,5 @@
 package stirling.software.SPDF.controller.api.misc;
+import io.github.pixee.security.Filenames;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -60,7 +61,7 @@ public class ExtractImagesController {
         zos.setLevel(Deflater.BEST_COMPRESSION);
 
         int imageIndex = 1;
-        String filename = file.getOriginalFilename().replaceFirst("[.][^.]+$", "");
+        String filename = Filenames.toSimpleFileName(file.getOriginalFilename()).replaceFirst("[.][^.]+$", "");
         int pageNum = 0;
         Set<Integer> processedImages = new HashSet<>();
         // Iterate over each page

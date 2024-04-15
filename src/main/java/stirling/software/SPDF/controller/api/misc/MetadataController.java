@@ -1,5 +1,6 @@
 package stirling.software.SPDF.controller.api.misc;
 
+import io.github.pixee.security.Filenames;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -147,7 +148,7 @@ public class MetadataController {
         info.setTrapped(trapped);
 
         document.setDocumentInformation(info);
-        return WebResponseUtils.pdfDocToWebResponse(document, pdfFile.getOriginalFilename().replaceFirst("[.][^.]+$", "") + "_metadata.pdf");
+        return WebResponseUtils.pdfDocToWebResponse(document, Filenames.toSimpleFileName(pdfFile.getOriginalFilename()).replaceFirst("[.][^.]+$", "") + "_metadata.pdf");
     }
 
 }

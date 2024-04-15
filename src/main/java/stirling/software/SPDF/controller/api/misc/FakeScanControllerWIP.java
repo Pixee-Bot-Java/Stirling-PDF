@@ -1,5 +1,6 @@
 package stirling.software.SPDF.controller.api.misc;
 
+import io.github.pixee.security.Filenames;
 import java.awt.Color;
 import java.awt.geom.AffineTransform;
 import java.awt.image.AffineTransformOp;
@@ -144,7 +145,7 @@ public class FakeScanControllerWIP {
     	documentOut.close();
 
         // Return the optimized PDF as a response
-        String outputFilename = inputFile.getOriginalFilename().replaceFirst("[.][^.]+$", "") + "_scanned.pdf";
+        String outputFilename = Filenames.toSimpleFileName(inputFile.getOriginalFilename()).replaceFirst("[.][^.]+$", "") + "_scanned.pdf";
         return WebResponseUtils.boasToWebResponse(baos, outputFilename);
     }
 
