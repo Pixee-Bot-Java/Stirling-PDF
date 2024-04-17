@@ -119,7 +119,7 @@ public class PdfUtils {
         PDFTextStripper textStripper = new PDFTextStripper();
         String pdfText = "";
 
-        if(pagesToCheck == null || pagesToCheck.equals("all")) {
+        if(pagesToCheck == null || "all".equals(pagesToCheck)) {
             pdfText = textStripper.getText(pdfDocument);
         } else {
             // remove whitespaces
