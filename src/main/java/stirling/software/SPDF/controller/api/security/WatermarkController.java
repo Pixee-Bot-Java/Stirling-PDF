@@ -67,10 +67,10 @@ public class WatermarkController {
 			graphicsState.setNonStrokingAlphaConstant(opacity);
 			contentStream.setGraphicsStateParameters(graphicsState);
 
-			if (watermarkType.equalsIgnoreCase("text")) {
+			if ("text".equalsIgnoreCase(watermarkType)) {
 				addTextWatermark(contentStream, watermarkText, document, page, rotation, widthSpacer, heightSpacer,
 						fontSize, alphabet);
-			} else if (watermarkType.equalsIgnoreCase("image")) {
+			} else if ("image".equalsIgnoreCase(watermarkType)) {
 				addImageWatermark(contentStream, watermarkImage, document, page, rotation, widthSpacer, heightSpacer,
 						fontSize);
 			}

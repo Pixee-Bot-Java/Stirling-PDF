@@ -66,7 +66,7 @@ public class OCRController {
             throw new IOException("Please select at least one language.");
         }
         
-        if(!ocrRenderType.equals("hocr") && !ocrRenderType.equals("sandwich")) {
+        if(!"hocr".equals(ocrRenderType) && !"sandwich".equals(ocrRenderType)) {
             throw new IOException("ocrRenderType wrong");
         }
         
